@@ -2,13 +2,16 @@ const express = require('express');
 const app = express();
 const socket = require('socket.io');
 const MongoClient = require('mongodb').MongoClient;
-const PORT = process.evn.PORT || 4000;
-
-
-const server = app.listen( PORT, ()=>{ console.log(`Listening to requests on port ${PORT}`)});
+const path = require('path')
+const PORT = process.env.PORT || 4000;
+const INDEX = '/public/index.html';
 
 // Static files
-app.use(express.static('public'));
+process.env.PWD = process.cwd();
+app.use(express.static(path.join(process.env.PWD, 'public')));
+
+const server = app.use((req, res) => res.sendFile(INDEX, { root: __dirname }))
+  .listen(PORT, () => console.log(`Listening to requests on ${PORT}`));
 
  // Socket setup
  const io = socket(server);
@@ -32,6 +35,7 @@ MongoClient.connect(url,
         // Connect to Socket.io
         io.on('connection', (socket) => {
             console.log('made socket connection', socket.id)
+            socket.on('disconnect', () => console.log('Client disconnected'));
 
             // Get the chat DB collection
             const chat = db.collection('chat');
@@ -47,7 +51,6 @@ MongoClient.connect(url,
                     throw err;
                 }
                 //Emit the messages
-                // io.emit refers to all the sockets connected on the server
                 io.emit('output', res);
             });
 

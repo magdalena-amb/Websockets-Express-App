@@ -19,8 +19,7 @@ const setStatus = (s) => {
 }
 
 //Make connection
-// this socket is from front-end socket.io that's loaded in index.html
-const socket = io.connect('https://mongo-websockets.herokuapp.com');
+const socket = io();
 
 //Check for connection
 if (socket !== undefined) {
@@ -44,8 +43,8 @@ if (socket !== undefined) {
     //handle input
     btn.addEventListener('click', ()=> {
     //emits message down the socket to the server
-    socket.emit('input', {          // name of the message
-        message: message.value,    // data
+    socket.emit('input', {         
+        message: message.value,    
         name: name.value
     });
     message.value = '';
@@ -64,11 +63,7 @@ if (socket !== undefined) {
             message.value = '';
         };
     }); 
-           
     
-
-
-
     // Get Status from server
     socket.on('status', (data)=>{
         //get message status
