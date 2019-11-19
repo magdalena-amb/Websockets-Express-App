@@ -20,7 +20,7 @@ const setStatus = (s) => {
 
 //Make connection
 // this socket is from front-end socket.io that's loaded in index.html
-const socket = io.connect('http://localhost:4000');
+const socket = io.connect('https://mongo-websockets.herokuapp.com');
 
 //Check for connection
 if (socket !== undefined) {

@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const socket = require('socket.io');
 const MongoClient = require('mongodb').MongoClient;
-const PORT = 4000;
+const PORT = process.evn.PORT || 4000;
 
 
 const server = app.listen( PORT, ()=>{ console.log(`Listening to requests on port ${PORT}`)});
