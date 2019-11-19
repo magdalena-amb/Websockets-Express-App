@@ -6,18 +6,17 @@ const path = require('path')
 const PORT = process.env.PORT || 4000;
 const INDEX = '/public/index.html';
 
-// Static files
-process.env.PWD = process.cwd();
-app.use(express.static(path.join(process.env.PWD, 'public')));
 
-const server = app.use((req, res) => res.sendFile(INDEX, { root: __dirname }))
-  .listen(PORT, () => console.log(`Listening to requests on ${PORT}`));
+
+const server = app.use(express.static(__dirname + '/public/'))
+    .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
+    .listen(PORT, () => console.log(`Listening to requests on ${PORT}`));
 
  // Socket setup
  const io = socket(server);
  
 // Connection URL
-const url = process.env.MONGODB_URI || 'mongodb://localhost:27017';
+const url = process.env.MONGODB_URI||'mongodb://localhost:27017';
  
 // Database Name
 const dbName = 'mongoChat';
