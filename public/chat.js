@@ -1,4 +1,3 @@
-const PORT = process.env.PORT || 'http://localhost:4000';
 
 //Query DOM
 const message = document.querySelector('#message'),
@@ -21,7 +20,7 @@ const setStatus = (s) => {
 
 //Make connection
 // this socket is from front-end socket.io that's loaded in index.html
-const socket = io.connect(PORT);
+const socket = io.connect('http://localhost:4000');
 
 //Check for connection
 if (socket !== undefined) {
