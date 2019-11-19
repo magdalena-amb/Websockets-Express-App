@@ -2,9 +2,10 @@ const express = require('express');
 const app = express();
 const socket = require('socket.io');
 const MongoClient = require('mongodb').MongoClient;
+const PORT = process.env.PORT || 4000;
 
 
-const server = app.listen( 4000, ()=>{ console.log('Listening to requests on port 4000')});
+const server = app.listen( PORT, ()=>{ console.log('Listening to requests on port 4000')});
 
 // Static files
 app.use(express.static('public'));
@@ -13,7 +14,7 @@ app.use(express.static('public'));
  const io = socket(server);
  
 // Connection URL
-const url = 'mongodb://localhost:27017';
+const url = process.env.MONGODB_URI || 'mongodb://localhost:27017';
  
 // Database Name
 const dbName = 'mongoChat';
