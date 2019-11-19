@@ -5,7 +5,7 @@ const MongoClient = require('mongodb').MongoClient;
 const PORT = process.env.PORT || 4000;
 
 
-const server = app.listen( PORT, ()=>{ console.log('Listening to requests on port 4000')});
+const server = app.listen( PORT, ()=>{ console.log(`Listening to requests on port ${PORT}`)});
 
 // Static files
 app.use(express.static('public'));
