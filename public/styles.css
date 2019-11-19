@@ -29,8 +29,14 @@ h2{
     color: #555;
 }
 
-#feedback p{
+#feedback p, #status p{
     color: #aaa;
+    padding: 14px 0px;
+    margin: 0 20px;
+}
+
+#status {
+    color: #413ee4;
     padding: 14px 0px;
     margin: 0 20px;
 }
