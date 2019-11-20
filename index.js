@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const socket = require('socket.io');
 const MongoClient = require('mongodb').MongoClient;
-const path = require('path')
 const PORT = process.env.PORT || 4000;
 const INDEX = '/public/index.html';
 
