@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const socket = require('socket.io');
 const MongoClient = require('mongodb').MongoClient;
 const path = require('path')
@@ -9,6 +10,7 @@ const INDEX = '/public/index.html';
 
 
 const server = app.use(express.static(__dirname + '/public/'))
+    .use(cors())
     .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
     .listen(PORT, () => console.log(`Listening to requests on ${PORT}`));
 
